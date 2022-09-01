@@ -13,6 +13,7 @@ Alexa.create({version: '1.1'})
         document.getElementById('debugElement').innerHTML = 'Alexa not ready :(';
      });
 
+
 // Implement the listener
 function messageReceivedCallback(message) {
   // Process message (JavaScript object) from your skill
