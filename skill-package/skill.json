@@ -1,0 +1,36 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "description": "Sample Full Description",
+          "examplePhrases": [
+            "Alexa open hello world",
+            "hello",
+            "help"
+          ],
+          "keywords": [],
+          "name": "webapi-helloworld",
+          "summary": "Sample Short Description"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Sample Testing Instructions.",
+      "category": "KNOWLEDGE_AND_TRIVIA",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "interfaces": [
+          {
+            "type": "ALEXA_PRESENTATION_HTML"
+          }
+        ],
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-west-2:252780360555:function:ask-webapi-helloworld-default-s-AlexaSkillFunction-Q7OgdFvZBCFS"
+        }
+      }
+    },
+    "manifestVersion": "1.0"
+  }
+}
