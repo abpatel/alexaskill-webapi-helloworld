@@ -11,7 +11,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome To hello world';
+        const speakOutput = 'Welcome to hello world';
         console.log(JSON.stringify(handlerInput));
         return handlerInput.responseBuilder
            .addDirective({
