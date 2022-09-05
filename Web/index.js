@@ -21,7 +21,7 @@ function messageReceivedCallback(message) {
 }
 
 function sendMessage(msg){
-    let json = JSON.stringify({message:msg});
+    let json = JSON.stringify(msg);
     alexaClient.skill.sendMessage(json);
 }
 

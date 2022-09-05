@@ -194,12 +194,31 @@ const myWebAppMessageLogger = {
     },
     handle(handlerInput) {
         console.log("Handling myWebAppLogger: " + handlerInput.requestEnvelope)
-
         const messageToLog = handlerInput.requestEnvelope.request.message;
         console.log(messageToLog);
         return handlerInput.responseBuilder.speak(messageToLog).getResponse();
     }
+};
+
+const MessageReceivedHandlerLogger = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === "Alexa.Presentation.HTML.Message";
+    },
+    handle(handlerInput) {
+        let message = handlerInput.requestEnvelope.request.message;
+        console.log(`Handling HTML message: ${message}`);
+        const speakOutput = (message.type == 'touch')? `Received,${message.message}, via touch` : message.message;
+        return handlerInput.responseBuilder.addDirective({
+            type:"Alexa.Presentation.HTML.HandleMessage",
+            message: {            
+                "message": speakOutput
+            }
+        })
+        .speak(speakOutput)
+        .getResponse();
+    }
 }
+
 
 /**
  * This handler acts as the entry point for your skill, routing all request and response
@@ -213,7 +232,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         FallbackIntentHandler,
-        myWebAppMessageLogger,
+        MessageReceivedHandlerLogger,
         SendMessageIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler)
