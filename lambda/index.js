@@ -211,7 +211,7 @@ const MessageReceivedHandlerLogger = {
         return handlerInput.responseBuilder.addDirective({
             type:"Alexa.Presentation.HTML.HandleMessage",
             message: {            
-                "message": speakOutput
+                "message": message
             }
         })
         .speak(speakOutput)
