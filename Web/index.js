@@ -17,7 +17,7 @@ Alexa.create({version: '1.1'})
 // Implement the listener
 function messageReceivedCallback(message) {
   // Process message (JavaScript object) from your skill
-  document.getElementById('debugElement').innerHTML = message.message;
+  document.getElementById('debugElement').innerHTML = message.message.type ? message.message.message : message.message;
 }
 
 function sendMessage(msg){
