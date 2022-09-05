@@ -50,7 +50,7 @@ const HelloWorldIntentHandler = {
                 type:"Alexa.Presentation.HTML.HandleMessage",
                 message: {
                     
-                    "message": speakOutput
+                    "message": {message:speakOutput}
                 }
             })
             .speak(speakOutput)
