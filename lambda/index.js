@@ -44,14 +44,11 @@ const HelloWorldIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hello World!';
-        
+         const speakOutput = 'Hello World!';
+         let jsonMessage  = {"message": speakOutput};       
          return handlerInput.responseBuilder.addDirective({
                 type:"Alexa.Presentation.HTML.HandleMessage",
-                message: {
-                    
-                    "message": {message:speakOutput}
-                }
+                message: jsonMessage
             })
             .speak(speakOutput)
             .reprompt(speakOutput)
@@ -175,11 +172,11 @@ const SendMessageIntentHandler = {
         console.log("SendMessageIntentHandler");
         let message = handlerInput.requestEnvelope.request.intent.slots.message.value; 
         const speakOutput = `Sending ${message}`;
-        message  = {"message": message};
+        let jsonMessage  = {"message": message};
         console.log(message);
          return handlerInput.responseBuilder.addDirective({
-                "type":"Alexa.Presentation.HTML.HandleMessage",
-                "message": message
+                type:"Alexa.Presentation.HTML.HandleMessage",
+                message: jsonMessage
             })
             .speak(speakOutput)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
@@ -206,13 +203,14 @@ const MessageReceivedHandlerLogger = {
     },
     handle(handlerInput) {
         let message = handlerInput.requestEnvelope.request.message;
+        let parsedMessage = JSON.parse(message);
+        const speakOutput = (parsedMessage.type === 'touch')? `Received,${parsedMessage.message}, via touch` : parsedMessage.message;
+        let jsonMessage  = {"message": message};
         console.log(`Handling HTML message: ${message}`);
-        const speakOutput = (message.type === 'touch')? `Received,${message.message}, via touch` : message.message;
+        console.log(speakOutput);
         return handlerInput.responseBuilder.addDirective({
             type:"Alexa.Presentation.HTML.HandleMessage",
-            message: {            
-                "message": message
-            }
+            message: jsonMessage
         })
         .speak(speakOutput)
         .getResponse();

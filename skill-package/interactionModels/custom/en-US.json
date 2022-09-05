@@ -19,13 +19,7 @@
             "name": "HelloWorldIntent",
             "slots": [],
             "samples": [
-              "hello",
-              "how are you",
-              "say hi world",
-              "say hi",
-              "hi",
-              "say hello world",
-              "say hello"
+              "hello"             
             ]
           },
           {
@@ -45,7 +39,7 @@
               }
             ],
             "samples": [
-              "Send {message}"
+              "Send message {message}"
             ]
           }
         ],
