@@ -207,7 +207,7 @@ const MessageReceivedHandlerLogger = {
     handle(handlerInput) {
         let message = handlerInput.requestEnvelope.request.message;
         console.log(`Handling HTML message: ${message}`);
-        const speakOutput = (message.type == 'touch')? `Received,${message.message}, via touch` : message.message;
+        const speakOutput = (message.type === 'touch')? `Received,${message.message}, via touch` : message.message;
         return handlerInput.responseBuilder.addDirective({
             type:"Alexa.Presentation.HTML.HandleMessage",
             message: {            
